@@ -4,6 +4,8 @@ import {RecipeService} from "../recipe.service";
 import {Subscription} from "rxjs";
 import {Recipe} from "../recipe";
 import {FormArray, FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
+import { Observable } from "rxjs/Observable";
+
 
 @Component({
   selector: 'rb-recipe-edit',
@@ -86,16 +88,18 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
     if(!this.isNew) {
       // Edit Form
-      for (let i = 0; i < this.recipe.ingredients.length; i++) {
-        recipeIngredients.push(
-          new FormGroup({
-            name: new FormControl(this.recipe.ingredients[i].name, Validators.required),
-            amount: new FormControl(this.recipe.ingredients[i].amount, [
-              Validators.required,
-              Validators.pattern("\\d+")
-            ])
-          })
-        );
+      if(this.recipe.hasOwnProperty('ingredients')){
+        for (let i = 0; i < this.recipe.ingredients.length; i++) {
+          recipeIngredients.push(
+            new FormGroup({
+              name: new FormControl(this.recipe.ingredients[i].name, Validators.required),
+              amount: new FormControl(this.recipe.ingredients[i].amount, [
+                Validators.required,
+                Validators.pattern("\\d+")
+              ])
+            })
+          );
+        }
       }
       recipeName = this.recipe.name;
       recipeImageUrl = this.recipe.imagePath;
