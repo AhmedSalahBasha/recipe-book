@@ -11,14 +11,14 @@ export class HeaderComponent {
   constructor(private recipeService: RecipeService) {}
 
   onStore(){
-    this.recipeService.storeDate().subscribe(
+    this.recipeService.storeData().subscribe(
       data => console.log(data),
       error => console.error(error)
     );
   }
 
   onFetch(){
-    this.recipeService.fetchDate();
+    this.recipeService.fetchData();
   }
 
 }

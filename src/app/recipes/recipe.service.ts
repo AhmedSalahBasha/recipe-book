@@ -9,17 +9,28 @@ export class RecipeService {
   recipesChanged = new EventEmitter<Recipe[]>();
 
   private recipes: Recipe[] = [
-    new Recipe('New Recipe','Very nice Very nice Very nice Very nice Very nice  ','http://myrecke.com/wp-content/uploads/2015/09/chicken-biryani.jpg',[
-      new Ingredient('French Fries', 2),
-      new Ingredient('Pork Meat', 3)
+    new Recipe('Pizza','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  ','http://thewebminer.com/blog/wp-content/uploads/2015/08/pizza-1.jpg',[
+      new Ingredient('tablespoons sugar', 2),
+      new Ingredient('tablespoon kosher salt', 1),
+      new Ingredient('tablespoon pure olive oil', 1),
+      new Ingredient('cup warm water', 0.75),
+      new Ingredient('cups bread flour', 2),
+      new Ingredient('teaspoon instant yeast', 1),
+      new Ingredient('teaspoons olive oil', 2)
     ]),
-    new Recipe('Tasty Potatoes','Very nice Very nice Very nice Very nice Very nice ','http://search.chow.com/thumbnail/800/600/www.chowstatic.com/assets/2015/02/31286_RecipeImage_baked_chicken_breast_mustard_sauce.jpg',[
-      new Ingredient('Fatouma Pizza', 1),
-      new Ingredient('Pasta Meat', 2)
+    new Recipe('Burger','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  ','http://static.communitytable.parade.com/wp-content/uploads/2013/08/Blue-Cheese-Bacon-Stuffed-Burger-1240.jpg',[
+      new Ingredient('cup warm water', 0.75),
+      new Ingredient('cups bread flour', 2),
+      new Ingredient('teaspoon instant yeast', 1),
+      new Ingredient('teaspoons olive oil', 2),
+      new Ingredient('tablespoons sugar', 2)
     ]),
-    new Recipe('New Chicken','Very nice Very nice Very nice Very nice Very nice ','http://www.thebantingchef.co.za/images/recipes/chicken/fancierfriedchicken.jpg',[
+    new Recipe('Chicken','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  ','https://www.easy-chicken.com/stat/img/1280/023HoneyLimeChickenSkewers.jpg',[
       new Ingredient('Hot Chocolate', 4),
-      new Ingredient('Fresh Milk', 1)
+      new Ingredient('Fresh Milk', 1),
+      new Ingredient('cup warm water', 0.75),
+      new Ingredient('cups bread flour', 2),
+      new Ingredient('teaspoon instant yeast', 1)
     ]),
   ];
   constructor(private http: Http) { }
@@ -44,7 +55,7 @@ export class RecipeService {
     this.recipes[this.recipes.indexOf(oldRecipe)] = newRecipe;
   }
 
-  storeDate() {
+  storeData() {
     const body = JSON.stringify(this.recipes);
     const headers = new Headers({
       'Content-Type': 'application/json'
@@ -52,7 +63,7 @@ export class RecipeService {
     return this.http.put('https://recipe-book-60f8a.firebaseio.com/recipes.json', body, {headers: headers});
   }
 
-  fetchDate(){
+  fetchData(){
     return this.http.get('https://recipe-book-60f8a.firebaseio.com/recipes.json')
       .map((response: Response) => response.json())
       .subscribe(
